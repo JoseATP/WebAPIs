@@ -1,4 +1,4 @@
-var TodoController            = require('./controllers/todos'),
+var ArtistController            = require('./controllers/artists'),
     AuthController            = require('./controllers/auth'),
     express                   = require('express'),
     passport                  = require('passport'),
@@ -11,19 +11,19 @@ module.exports = (app) => {
 
     var apiRoutes     = express.Router(),
         authRoutes    = express.Router(),
-        todoRoutes    = express.Router();
+        artistRoutes    = express.Router();
 
     // Auth Routes
     apiRoutes.use('/auth', authRoutes);
     authRoutes.post('/register', AuthController.register);
 
-    // Todo Routes
-    apiRoutes.use('/todos', todoRoutes);
-    todoRoutes.get('/:todo_id', TodoController.getTodo);
-    todoRoutes.get('/', TodoController.getTodos);
-    todoRoutes.post('/', TodoController.createTodo);
-    todoRoutes.put('/:todo_id', TodoController.updateTodo);
-    todoRoutes.delete('/:todo_id', TodoController.deleteTodo);
+    // Artist Routes
+    apiRoutes.use('/artists', artistRoutes);
+    artistRoutes.get('/:artist_id', ArtistController.getArtist);
+    artistRoutes.get('/', ArtistController.getTodos);
+    artistRoutes.post('/', ArtistController.createArtist);
+    artistRoutes.put('/:artist_id', ArtistController.updateArtist);
+    artistRoutes.delete('/:artist_id', ArtistController.deleteArtist);
 
     // Set up routes
     app.use('/api/v1', apiRoutes);
